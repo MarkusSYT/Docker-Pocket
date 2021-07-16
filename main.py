@@ -26,8 +26,16 @@ choices: str = """
 
 def main():
     typer.echo(typer.style(logo, fg=typer.colors.BLUE))
-    typer.echo(typer.style("         by MarkusS (https://github.com/MarkusSYT)", fg=typer.colors.GREEN))
-    typer.echo(typer.style("         by Tert0   (https://github.com/Tert0)", fg=typer.colors.GREEN))
+    typer.echo(
+        typer.style(
+            "         by MarkusS (https://github.com/MarkusSYT)", fg=typer.colors.GREEN
+        )
+    )
+    typer.echo(
+        typer.style(
+            "         by Tert0   (https://github.com/Tert0)", fg=typer.colors.GREEN
+        )
+    )
     typer.echo(typer.style(choices, fg=typer.colors.CYAN))
     choice = typer.prompt(">", prompt_suffix=" ")
     command = ""
@@ -53,7 +61,9 @@ def main():
     elif choice == "8":
         image = typer.prompt("Whats the image name?")
         container = typer.prompt("Whats the container name?")
-        typer.echo("How to expose Ports: HOST_PORT_1:CONTAINER_PORT_1;HOST_PORT_2:CONTAINER_PORT_2")
+        typer.echo(
+            "How to expose Ports: HOST_PORT_1:CONTAINER_PORT_1;HOST_PORT_2:CONTAINER_PORT_2"
+        )
         ports = typer.prompt("Expose Ports").split(";")
         ports_str = ""
         if len(ports) > 0:
@@ -68,13 +78,20 @@ def main():
     elif choice == "11":
         return 0
     if command != "":
-        typer.echo(typer.style(f"Executing command '{command}'", fg=typer.colors.BRIGHT_GREEN))
+        typer.echo(
+            typer.style(f"Executing command '{command}'", fg=typer.colors.BRIGHT_GREEN)
+        )
         os.system(command)
 
     else:
-        typer.echo(typer.style(f"The Choice '{choice}' is not supported", fg=typer.colors.RED))
-    if typer.confirm(typer.style("Do you want to continue?", fg=typer.colors.BRIGHT_RED), prompt_suffix="",
-                     default=True):
+        typer.echo(
+            typer.style(f"The Choice '{choice}' is not supported", fg=typer.colors.RED)
+        )
+    if typer.confirm(
+        typer.style("Do you want to continue?", fg=typer.colors.BRIGHT_RED),
+        prompt_suffix="",
+        default=True,
+    ):
         main()
 
 
